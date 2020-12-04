@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="pierre.cs.colostate.edu" id="4b8724a2-0316-4514-989b-af2fba9dd30d" port="22" nameFormat="DESCRIPTIVE" username="relphlm" />
+    </configs>
+  </component>
+</project>

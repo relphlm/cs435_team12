@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7d27abe4-a548-4c3f-b7d1-58d8919858fa" name="pierre.cs.colostate.edu">
+        <fileTransfer rootFolder="/s/bach/c/under/relphlm" accessType="SFTP" host="pierre.cs.colostate.edu" port="22" sshConfigId="4b8724a2-0316-4514-989b-af2fba9dd30d" sshConfig="relphlm@pierre.cs.colostate.edu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
