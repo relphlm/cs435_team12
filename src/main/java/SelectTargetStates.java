@@ -38,8 +38,8 @@ public class SelectTargetStates {
             String[] lineEntry = value.toString().split(",");
 
             if (lineEntry.length >= 9 && !lineEntry[0].equals("")) {
-                if (!lineEntry[SCHOOL_CLOSING].equals("") && lineEntry[SCHOOL_CLOSING].equals("2.00")) { //Filter only those entries that required school closing
-                    if (!lineEntry[WORKPLACE_CLOSING].equals("") && lineEntry[WORKPLACE_CLOSING].equals("2.00")){
+                if (!lineEntry[SCHOOL_CLOSING].equals("") && lineEntry[SCHOOL_CLOSING].equals("3.00")) { //Filter only those entries that required school closing
+                    if (!lineEntry[WORKPLACE_CLOSING].equals("") && lineEntry[WORKPLACE_CLOSING].equals("3.00")){
                         String filteredEntryKey = extractStateAndDate(lineEntry);
                         String filteredEntryValue = extractValues(value.toString(), lineEntry);
 
@@ -54,7 +54,7 @@ public class SelectTargetStates {
         public String extractStateAndDate(String[] lineEntry){
             String cleanedEntry = "";
             cleanedEntry += lineEntry[2] + ":"; //extract State name
-            cleanedEntry += lineEntry[4]; //extract DATE stamp
+            cleanedEntry += lineEntry[4] + ","; //extract DATE stamp
             return cleanedEntry;
         }
 
@@ -82,7 +82,7 @@ public class SelectTargetStates {
 //        job2.setReducerClass(NarrowUSStates.class);
         job2.setNumReduceTasks(0);
         FileInputFormat.addInputPath(job2, new Path(args[0]  + "/SelectTargetLocations/selectUnitedStatesLocations"));
-        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/2School2Work"));
+        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/3School3Work"));
         System.exit(job2.waitForCompletion(true) ? 0 : 1);
     }
 }

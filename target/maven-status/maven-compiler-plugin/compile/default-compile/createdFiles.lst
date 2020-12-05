@@ -1,5 +1,10 @@
-SelectOnlyUSLocations$SelectTargetLocationsMapper.class
-Test.class
+EntriesDescending$StatesDescendingReducer.class
+EntriesDescending$DescendingCountReducer.class
 SelectOnlyUSLocations.class
 SelectTargetStates.class
 SelectTargetStates$NarrowUSStatesMapper.class
+EntriesDescending.class
+EntriesDescending$StatesDescendingMapper.class
+EntriesDescending$DescendingCountMapper.class
+SelectOnlyUSLocations$SelectTargetLocationsMapper.class
+Test.class
