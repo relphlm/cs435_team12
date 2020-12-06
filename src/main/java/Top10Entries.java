@@ -12,7 +12,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Count {
+public class Top10Entries {
 
     public static class CountEntriesMapper extends Mapper<Object, Text, Text, IntWritable>{
 
@@ -73,10 +73,10 @@ public class Count {
                 stateCount.sort((o1, o2) ->
                         o2.getValue() - o1.getValue());
 
-                for (int i = 0; i < stateCount.size(); i++) {
-                    Text nodeID = new Text(stateCount.get(i).getKey());
-                    IntWritable edgeCount = new IntWritable(stateCount.get(i).getValue());
-                    context.write(nodeID, edgeCount);
+                for (int i = 0; i < 10; i++) {
+                    Text stateKey = new Text(stateCount.get(i).getKey());
+                    IntWritable stateEntryCount = new IntWritable(stateCount.get(i).getValue());
+                    context.write(stateKey, stateEntryCount);
                 }
             }
 
@@ -84,7 +84,7 @@ public class Count {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf1 = new Configuration();
         Job job1 = Job.getInstance(conf1, "Count state entries");
-        job1.setJarByClass(Count.class);
+        job1.setJarByClass(Top10Entries.class);
         job1.setMapperClass(CountEntriesMapper.class);
         job1.setMapOutputKeyClass(Text.class);
         job1.setMapOutputValueClass(IntWritable.class);
@@ -92,14 +92,14 @@ public class Count {
         job1.setOutputKeyClass(Text.class);
         job1.setOutputValueClass(IntWritable.class);
         job1.setNumReduceTasks(3);
-        FileInputFormat.addInputPath(job1, new Path(args[0] + "/SelectTargetLocations/0School0Work"));
-        FileOutputFormat.setOutputPath(job1, new Path(args[0] + "/SelectTargetLocations/countTempBottomFive"));
+        FileInputFormat.addInputPath(job1, new Path(args[0] + "/SelectTargetLocations/selectStates"));
+        FileOutputFormat.setOutputPath(job1, new Path(args[0] + "/SelectTargetLocations/countTemp"));
         job1.waitForCompletion(true);
 
         /// Job 2
         Configuration conf2 = new Configuration();
         Job job2 = Job.getInstance(conf2, "Sort by descending");
-        job2.setJarByClass(Count.class);
+        job2.setJarByClass(Top10Entries.class);
         job2.setMapperClass(DescendingMapper.class);
         job2.setMapOutputKeyClass(Text.class);
         job2.setMapOutputValueClass(IntWritable.class);
@@ -107,8 +107,8 @@ public class Count {
         job2.setOutputKeyClass(Text.class);
         job2.setOutputValueClass(IntWritable.class);
         job2.setNumReduceTasks(1);
-        FileInputFormat.addInputPath(job2, new Path(args[0] + "/SelectTargetLocations/countTempBottomFive"));
-        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/countFinalBottomFive"));
+        FileInputFormat.addInputPath(job2, new Path(args[0] + "/SelectTargetLocations/countTemp"));
+        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/top10"));
         System.exit(job2.waitForCompletion(true) ? 0 : 1);
     }
 }

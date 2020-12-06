@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class SelectTargetStates {
+public class selectControlSates {
     final static int COUNTRY_NAME = 0;
     final static int DATE = 4;
     final static int SCHOOL_CLOSING = 5;
@@ -28,7 +28,7 @@ public class SelectTargetStates {
 
     /**
      * This mapper class is used to narrow down us region such that the resulting aggregation contains regions that
-     * have had frequent and relatively intense Covid lockdown protocols. It utilizes the final fields at the top of this
+     * have NOT had frequent and relatively intense Covid lockdown protocols. It utilizes the final fields at the top of this
      * file, these fields are in accordance to the indices of their correlated data within the original dataset schema.
      */
     public static class NarrowUSStatesMapper extends Mapper<Object, Text, Text, Text> {
@@ -75,14 +75,14 @@ public class SelectTargetStates {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf2 = new Configuration();
         Job job2 = Job.getInstance(conf2, "Narrow down selected targets");
-        job2.setJarByClass(SelectTargetStates.class);
+        job2.setJarByClass(selectControlSates.class);
         job2.setMapperClass(NarrowUSStatesMapper.class);
         job2.setMapOutputKeyClass(Text.class);
         job2.setMapOutputValueClass(Text.class);
 //        job2.setReducerClass(NarrowUSStates.class);
         job2.setNumReduceTasks(0);
         FileInputFormat.addInputPath(job2, new Path(args[0]  + "/SelectTargetLocations/selectUnitedStatesLocations"));
-        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/0School0Work"));
+        FileOutputFormat.setOutputPath(job2, new Path(args[0] + "/SelectTargetLocations/selectControlStates"));
         System.exit(job2.waitForCompletion(true) ? 0 : 1);
     }
 }
