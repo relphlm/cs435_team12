@@ -97,7 +97,7 @@ public class Top10StateEntries {
         job1.setOutputValueClass(IntWritable.class
         );
 
-        FileInputFormat.addInputPath(job1, new Path(args[0]  + "/SelectTargetLocations/selectLockDownStates"));
+        FileInputFormat.addInputPath(job1, new Path(args[0]  + "/SelectTargetLocations/selectControlStates"));
         FileOutputFormat.setOutputPath(job1, new Path(args[0] + "/SelectTargetLocations/TEMPTop10StateEntries"));
         job1.waitForCompletion(true);
 

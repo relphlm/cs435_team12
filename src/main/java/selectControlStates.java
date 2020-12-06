@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class selectControlSates {
+public class selectControlStates {
     final static int COUNTRY_NAME = 0;
     final static int DATE = 4;
     final static int SCHOOL_CLOSING = 5;
@@ -75,7 +75,7 @@ public class selectControlSates {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf2 = new Configuration();
         Job job2 = Job.getInstance(conf2, "Narrow down selected targets");
-        job2.setJarByClass(selectControlSates.class);
+        job2.setJarByClass(selectControlStates.class);
         job2.setMapperClass(NarrowUSStatesMapper.class);
         job2.setMapOutputKeyClass(Text.class);
         job2.setMapOutputValueClass(Text.class);

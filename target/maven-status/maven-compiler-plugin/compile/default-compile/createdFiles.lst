@@ -1,5 +1,7 @@
+selectControlStates$NarrowUSStatesMapper.class
 Top10StateEntries$DescendingCountReducer.class
 Top10Entries$CountEntriesMapper.class
+selectControlStates.class
 Top10Entries.class
 Test.class
 Top10Entries$DescendingReducer.class
@@ -9,9 +11,7 @@ Top10StateEntries$DescendingCountMapper.class
 Top10Entries$DescendingMapper.class
 SelectOnlyUSLocations.class
 Top10StateEntries$StatesDescendingReducer.class
-selectControlSates.class
 Top10Entries$CountEntriesReducer.class
 Top10StateEntries.class
 SelectOnlyUSLocations$SelectTargetLocationsMapper.class
 SelectLockDownStates$NarrowUSStatesMapper.class
-selectControlSates$NarrowUSStatesMapper.class
